@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon compte - Cabinet Dentaire Bougatef</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="logopg.png">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html"><img src="logopg.png" alt="Logo Cabinet Dentaire"></a>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                <a href="medecins.html"><i class="fas fa-user-md"></i> Médecins</a>
+                <a href="services.html"><i class="fas fa-teeth"></i> Services / RDV</a>
+                <span class="nav-auth-slot" id="navAuthSlot">
+                    <a href="inscription-connexion.html" class="nav-auth-combined"><i class="fas fa-user"></i> Inscription / Connexion</a>
+                </span>
+                <a href="gestion-patient.html" class="nav-link-gestion-patients" hidden><i class="fas fa-clipboard-list"></i> Gestion Patients</a>
+                <a href="gestion-rdv.html" class="nav-link-gestion-rdv" hidden><i class="fas fa-calendar-check"></i> Rendez-vous</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container-custom">
+        <div id="accountGate" class="message error" role="status">
+            <i class="fas fa-spinner fa-spin"></i> Chargement de votre espace…
+        </div>
+
+        <div id="accountApp" class="hidden">
+            <div class="account-hero">
+                <div class="account-avatar-wrap">
+                    <img id="accountAvatarImg" class="hidden" alt="Photo de profil">
+                    <div id="accountAvatarFallback" class="account-avatar-fallback" aria-hidden="true"></div>
+                    <form id="photoForm" class="account-photo-form">
+                        <input type="file" name="photo" id="photoInput" accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+                        <button type="button" id="photoBtn" class="btn-small btn-secondary">
+                            <i class="fas fa-camera"></i> Changer la photo
+                        </button>
+                    </form>
+                </div>
+                <div class="account-hero-text">
+                    <h1 id="accountWelcomeTitle">Mon compte</h1>
+                    <p class="account-role-line" id="accountRoleLine"></p>
+                    <div class="account-hero-actions">
+                        <a href="reserver-rdv.html" class="btn-small btn-secondary account-action-link"><i class="fas fa-calendar-plus"></i> Réserver</a>
+                        <button type="button" id="logoutBtn" class="btn-small btn-secondary"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="account-grid">
+                <section class="form-section">
+                    <h2><i class="fas fa-id-card"></i> Coordonnées personnelles</h2>
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label for="pfNom"><i class="fas fa-user"></i> Nom</label>
+                            <input type="text" id="pfNom" name="pfNom" required maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="pfPrenom"><i class="fas fa-user"></i> Prénom</label>
+                            <input type="text" id="pfPrenom" name="pfPrenom" required maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="pfCivilite"><i class="fas fa-venus-mars"></i> Civilité</label>
+                            <select id="pfCivilite" name="pfCivilite">
+                                <option value="M">Monsieur</option>
+                                <option value="Mme">Madame</option>
+                                <option value="Mlle">Mademoiselle</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pfNaissance"><i class="fas fa-calendar"></i> Date de naissance</label>
+                            <input type="date" id="pfNaissance" name="pfNaissance" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pfEmail"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="pfEmail" name="pfEmail" required maxlength="150" autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label><input type="checkbox" id="pfNewsletter" name="pfNewsletter"> Recevoir les newsletters et offres</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="pfTel"><i class="fas fa-phone"></i> Téléphone</label>
+                            <input type="tel" id="pfTel" name="pfTel" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pfAdresse"><i class="fas fa-map-marker-alt"></i> Adresse</label>
+                            <textarea id="pfAdresse" name="pfAdresse" rows="2" placeholder="Adresse postale"></textarea>
+                        </div>
+                        <button type="submit"><i class="fas fa-save"></i> Enregistrer les modifications</button>
+                    </form>
+                </section>
+
+                <section class="form-section" id="dossierSection">
+                    <h2><i class="fas fa-folder-open"></i> Dossier patient</h2>
+                    <p id="noDossier" class="muted-note hidden">Aucun dossier patient n’est lié à ce compte. Contactez l’accueil si besoin.</p>
+                    <div id="dossierContent" class="hidden">
+                        <dl class="account-dl">
+                            <dt>Nom sur le dossier</dt>
+                            <dd id="dNomComplet"></dd>
+                            <dt>Médecin référent</dt>
+                            <dd id="dMedecin"></dd>
+                            <dt>Notes médicales (antécédents)</dt>
+                            <dd id="dNotes" class="account-notes"></dd>
+                        </dl>
+                    </div>
+                </section>
+            </div>
+
+            <section class="account-history-block">
+                <h2><i class="fas fa-history"></i> Historique des consultations &amp; actes</h2>
+                <p class="subtitle account-subtitle-tight">Rendez-vous, soins associés et comptes rendus.</p>
+                <p id="noHistory" class="empty-state hidden">Aucune consultation enregistrée pour le moment.</p>
+                <div id="historyWrap" class="account-table-wrap hidden"></div>
+            </section>
+
+            <section class="account-history-block">
+                <h2><i class="fas fa-money-check-alt"></i> Détail des paiements</h2>
+                <p id="noPayments" class="empty-state hidden">Aucun paiement enregistré.</p>
+                <div id="paymentsWrap" class="account-table-wrap hidden"></div>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Cabinet Dentaire Bougatef - Tous droits réservés<br>
+        <small>
+            <i class="fas fa-phone"></i> Téléphone : 70 000 000 |
+            <i class="fas fa-envelope"></i> Email : contact@cabinetbougatef.com
+        </small>
+    </footer>
+    <script src="api-base.js"></script>
+    <script src="nav-auth.js" defer></script>
+    <script src="mon-compte.js" defer></script>
+</body>
+</html>

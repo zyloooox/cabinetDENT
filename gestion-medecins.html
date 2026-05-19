@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comptes praticiens - Cabinet Bougatef</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="logopg.png">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html"><img src="logopg.png" alt="Logo Cabinet Dentaire"></a>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                <a href="medecins.html"><i class="fas fa-user-md"></i> Médecins</a>
+                <a href="services.html"><i class="fas fa-teeth"></i> Services / RDV</a>
+                <span class="nav-auth-slot" id="navAuthSlot">
+                    <a href="inscription-connexion.html" class="nav-auth-combined"><i class="fas fa-user"></i> Inscription / Connexion</a>
+                </span>
+                <a href="gestion-patient.html" class="nav-link-gestion-patients" hidden><i class="fas fa-clipboard-list"></i> Gestion Patients</a>
+                <a href="gestion-rdv.html" class="nav-link-gestion-rdv" hidden><i class="fas fa-calendar-check"></i> Rendez-vous</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container-custom">
+        <div id="gate" class="message error" role="status"><i class="fas fa-spinner fa-spin"></i> Vérification…</div>
+        <div id="app" class="hidden cabinet-medecins-app">
+            <header class="cabinet-page-hero">
+                <p class="cabinet-page-kicker">Administration du cabinet</p>
+                <h1 class="cabinet-page-title">Comptes praticiens</h1>
+                <p class="cabinet-page-lead">
+                    Jusqu’à <strong>deux</strong> accès praticien. Créez un nouvel identifiant (email + mot de passe) ou faites passer un <strong>patient déjà inscrit</strong> au rôle praticien.
+                </p>
+                <div class="cabinet-page-meta">
+                    <div class="cabinet-stat-pill" aria-live="polite">
+                        <span class="cabinet-stat-pill__value" id="cabinetMedCount">—</span>
+                        <span class="cabinet-stat-pill__label">praticien(s) sur 2 postes</span>
+                    </div>
+                </div>
+            </header>
+
+            <nav class="cabinet-jump-nav" aria-label="Aller à une section">
+                <a href="#nouveau-compte-medecin" class="cabinet-jump-nav__link cabinet-jump-nav__link--accent"><i class="fas fa-user-plus"></i> Nouveau compte</a>
+                <a href="#equipe-praticiens" class="cabinet-jump-nav__link"><i class="fas fa-users"></i> Équipe actuelle</a>
+                <a href="#promouvoir-patient" class="cabinet-jump-nav__link"><i class="fas fa-level-up-alt"></i> Promouvoir un patient</a>
+            </nav>
+
+            <p class="cabinet-admin-quick-links admin-quick-links">
+                <a href="gestion-rdv.html"><i class="fas fa-calendar-alt"></i> Rendez-vous</a>
+                <span class="cabinet-admin-quick-links__sep" aria-hidden="true">·</span>
+                <a href="gestion-services.html"><i class="fas fa-teeth"></i> Services</a>
+                <span class="cabinet-admin-quick-links__sep" aria-hidden="true">·</span>
+                <a href="gestion-patient.html"><i class="fas fa-clipboard-list"></i> Gestion patients</a>
+            </p>
+
+            <section id="nouveau-compte-medecin" class="form-section cabinet-ms-primary" tabindex="-1">
+                <div class="cabinet-section-head">
+                    <span class="cabinet-step-badge" aria-hidden="true">1</span>
+                    <div class="cabinet-section-head__text">
+                        <h2 class="cabinet-section-title"><i class="fas fa-user-plus"></i> Créer un compte praticien</h2>
+                        <p class="cabinet-section-sub">Renseignez la fiche et le mot de passe : le praticien se connectera avec l’adresse email ci-dessous.</p>
+                    </div>
+                </div>
+                <div id="slotsHint" class="cabinet-alert cabinet-alert--info" role="status">
+                    <i class="fas fa-circle-notch fa-spin cabinet-alert__icon" aria-hidden="true"></i>
+                    <div class="cabinet-alert__body">Chargement des postes…</div>
+                </div>
+                <form id="createMedecinForm" class="cabinet-form-grid">
+                    <div class="form-group">
+                        <label for="createPrenom">Prénom *</label>
+                        <input type="text" id="createPrenom" required maxlength="100" autocomplete="given-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="createNom">Nom *</label>
+                        <input type="text" id="createNom" required maxlength="100" autocomplete="family-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="createCivilite">Civilité</label>
+                        <select id="createCivilite">
+                            <option value="M">Monsieur</option>
+                            <option value="Mme">Madame</option>
+                            <option value="Mlle">Mademoiselle</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="createNaissance">Date de naissance *</label>
+                        <input type="date" id="createNaissance" required>
+                    </div>
+                    <div class="form-group cabinet-form-span2">
+                        <label for="createEmail">Email (connexion) *</label>
+                        <input type="email" id="createEmail" required maxlength="150" autocomplete="email">
+                    </div>
+                    <div class="form-group cabinet-form-span2">
+                        <label for="createTel">Téléphone *</label>
+                        <input type="tel" id="createTel" required maxlength="20" autocomplete="tel">
+                    </div>
+                    <div class="form-group">
+                        <label for="createPassword">Mot de passe * (min. 8 caractères)</label>
+                        <input type="password" id="createPassword" required minlength="8" autocomplete="new-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="createPassword2">Confirmer le mot de passe *</label>
+                        <input type="password" id="createPassword2" required minlength="8" autocomplete="new-password">
+                    </div>
+                    <div class="form-group cabinet-form-span2" id="createReplaceWrap">
+                        <label for="createReplaceMedId">Remplacer quel praticien ?</label>
+                        <select id="createReplaceMedId">
+                            <option value="">— Non applicable —</option>
+                        </select>
+                        <small class="cabinet-field-hint">Obligatoire lorsque les <strong>deux</strong> postes sont déjà occupés.</small>
+                    </div>
+                    <div class="cabinet-form-actions cabinet-form-span2">
+                        <button type="submit"><i class="fas fa-user-md"></i> Créer le compte praticien</button>
+                    </div>
+                </form>
+                <p id="createMsg" class="message" style="display: none; margin-top: 1rem;"></p>
+            </section>
+
+            <section id="equipe-praticiens" class="form-section cabinet-ms-panel" style="margin-top: 2rem;">
+                <div class="cabinet-section-head">
+                    <span class="cabinet-step-badge cabinet-step-badge--muted" aria-hidden="true">2</span>
+                    <div class="cabinet-section-head__text">
+                        <h2 class="cabinet-section-title"><i class="fas fa-users"></i> Équipe actuelle</h2>
+                        <p class="cabinet-section-sub">Aperçu des praticiens rattachés au cabinet.</p>
+                    </div>
+                </div>
+                <div id="medList" class="cabinet-doc-list-root">Chargement…</div>
+            </section>
+
+            <section id="promouvoir-patient" class="form-section cabinet-ms-panel" style="margin-top: 2rem;">
+                <div class="cabinet-section-head">
+                    <span class="cabinet-step-badge cabinet-step-badge--muted" aria-hidden="true">3</span>
+                    <div class="cabinet-section-head__text">
+                        <h2 class="cabinet-section-title"><i class="fas fa-exchange-alt"></i> Promouvoir un patient</h2>
+                        <p class="cabinet-section-sub">Attribuez le rôle praticien à un compte patient existant. Si les deux postes sont pris, indiquez qui est remplacé.</p>
+                    </div>
+                </div>
+                <form id="promoteForm">
+                    <div class="form-group">
+                        <label for="promoteUserId">Compte patient à promouvoir *</label>
+                        <select id="promoteUserId" required></select>
+                    </div>
+                    <div class="form-group" id="replaceWrap">
+                        <label for="replaceMedId">Remplacer quel praticien ?</label>
+                        <select id="replaceMedId">
+                            <option value="">— Choisir si les 2 postes sont pris —</option>
+                        </select>
+                    </div>
+                    <button type="submit"><i class="fas fa-check"></i> Appliquer la promotion</button>
+                </form>
+                <p id="promoteMsg" class="message" style="display: none; margin-top: 1rem;"></p>
+            </section>
+
+            <section class="aside-card" style="margin-top: 2rem;">
+                <h3><i class="fas fa-info-circle"></i> Comptes de démonstration (après import SQL)</h3>
+                <p class="muted-note" style="margin-bottom: 0.5rem;">Si vous avez importé les données de démo :</p>
+                <ul class="cabinet-demo-list">
+                    <li><code>dr.ilhem.trabelsi@cabinetbougatef.com</code> — <code>password</code></li>
+                    <li><code>dr.chakib.bougatef@cabinetbougatef.com</code> — <code>password</code></li>
+                </ul>
+                <p class="muted-note" style="margin-top: 0.75rem;">Sinon, créez vos praticiens avec le formulaire « Créer un compte praticien ».</p>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Cabinet Dentaire Bougatef - Tous droits réservés<br>
+        <small><i class="fas fa-phone"></i> 70 000 000</small>
+    </footer>
+    <script src="api-base.js"></script>
+    <script src="nav-auth.js" defer></script>
+    <script src="gestion-medecins.js" defer></script>
+</body>
+</html>

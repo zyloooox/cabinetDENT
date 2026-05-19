@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Services - Cabinet Dentaire</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+     <link rel="icon" type="image/x-icon" href="logopg.png">
+
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html"><img src="logopg.png" alt="Logo Cabinet Dentaire"></a>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                <a href="medecins.html"><i class="fas fa-user-md"></i> Médecins</a>
+                <a href="services.html"><i class="fas fa-teeth"></i> Services / RDV</a>
+                <span class="nav-auth-slot" id="navAuthSlot">
+                    <a href="inscription-connexion.html" class="nav-auth-combined"><i class="fas fa-user"></i> Inscription / Connexion</a>
+                </span>
+                <a href="gestion-patient.html" class="nav-link-gestion-patients" hidden><i class="fas fa-clipboard-list"></i> Gestion Patients</a>
+                <a href="gestion-rdv.html" class="nav-link-gestion-rdv" hidden><i class="fas fa-calendar-check"></i> Rendez-vous</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container-custom">
+        <h1>Nos Services Dentaires</h1>
+        <p class="subtitle">
+            Découvrez notre gamme complète de services dentaires, alliant qualité des soins et technologies de pointe.
+        </p>
+        
+        <div class="figure-hero">
+            <img src="dentiste.jpg" alt="Salle de traitement moderne">
+        </div>
+        
+        <div id="servicesListRoot" class="services-dynamic-root"></div>
+
+        <div class="horaires">
+            <h3><i class="fas fa-info-circle"></i> Informations Importantes</h3>
+            <p>• Les prix sont indicatifs et peuvent varier selon la complexité du cas</p>
+            <p>• Premier rendez-vous : consultation obligatoire avant tout traitement</p>
+            <p>• Paiement : Espèces, carte bancaire, chèque</p>
+            <p>• Possibilité de paiement en plusieurs fois pour certains traitements</p>
+        </div>
+        
+        <div class="cta-row">
+            <a href="reserver-rdv.html">
+                <button type="button" class="btn-small"><i class="fas fa-calendar-check"></i> Réserver une consultation</button>
+            </a>
+            <a href="tel:70000000">
+                <button type="button" class="btn-small btn-accent"><i class="fas fa-phone"></i> Appeler pour un devis</button>
+            </a>
+        </div>
+
+    </div>
+
+    <footer>
+        © 2026 Cabinet Dentaire Bougatef - Tous droits réservés<br>
+        <small>
+            <i class="fas fa-phone"></i> Téléphone : 70 000 000 | 
+            <i class="fas fa-envelope"></i> Email : contact@cabinetbougatef.com
+        </small>
+    </footer>
+    <script src="api-base.js"></script>
+    <script src="nav-auth.js" defer></script>
+    <script src="services-catalog.js" defer></script>
+</body>
+</html>

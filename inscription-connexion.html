@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription / Connexion - Cabinet Dentaire Bougatef</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="logopg.png">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html"><img src="logopg.png" alt="Logo Cabinet Dentaire"></a>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                <a href="medecins.html"><i class="fas fa-user-md"></i> Médecins</a>
+                <a href="services.html"><i class="fas fa-teeth"></i> Services / RDV</a>
+                <span class="nav-auth-slot" id="navAuthSlot">
+                    <a href="inscription-connexion.html" class="nav-auth-combined"><i class="fas fa-user"></i> Inscription / Connexion</a>
+                </span>
+                <a href="gestion-patient.html" class="nav-link-gestion-patients" hidden><i class="fas fa-clipboard-list"></i> Gestion Patients</a>
+                <a href="gestion-rdv.html" class="nav-link-gestion-rdv" hidden><i class="fas fa-calendar-check"></i> Rendez-vous</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container-custom">
+        <h1><i class="fas fa-user-circle"></i> Connexion &amp; inscription patients</h1>
+        <p class="subtitle">Les <strong>patients</strong> créent un compte ici. Les <strong>praticiens</strong> utilisent les accès fournis par le cabinet (voir encadré sous le formulaire de connexion).</p>
+
+        <div class="auth-tabs" role="tablist">
+            <button type="button" class="auth-tab active" id="tabLogin" data-panel="login" role="tab" aria-selected="true">
+                <i class="fas fa-sign-in-alt"></i> Connexion
+            </button>
+            <button type="button" class="auth-tab" id="tabRegister" data-panel="register" role="tab" aria-selected="false">
+                <i class="fas fa-user-plus"></i> Inscription
+            </button>
+        </div>
+
+        <div id="authPanelLogin" class="auth-panel">
+            <div class="page-narrow">
+                <div class="form-section">
+                    <h2 class="auth-panel-title"><i class="fas fa-key"></i> Déjà client ?</h2>
+                    <p class="muted-note" style="margin-top: 0;">Saisissez vos identifiants pour ouvrir votre compte.</p>
+                    <form id="loginForm">
+                        <div class="message error" style="display: none;" id="loginErrorMessage"></div>
+                        <div class="form-group">
+                            <label for="loginEmail"><i class="fas fa-envelope"></i> Adresse email</label>
+                            <input type="email" id="loginEmail" name="loginEmail" required autocomplete="username" placeholder="votre@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword"><i class="fas fa-lock"></i> Mot de passe</label>
+                            <div class="password-field">
+                                <input type="password" id="loginPassword" name="loginPassword" required autocomplete="current-password" placeholder="********">
+                                <button type="button" class="password-toggle" data-password-target="loginPassword" aria-label="Afficher ou masquer le mot de passe" title="Afficher / masquer">
+                                    <i class="fas fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="text-right" style="margin-top: 5px;">
+                                <a href="#" style="font-size: 0.9rem;"><i class="fas fa-question-circle"></i> Mot de passe oublié ?</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="loginRemember" name="remember">
+                                Se souvenir de moi
+                            </label>
+                        </div>
+                        <button type="submit"><i class="fas fa-sign-in-alt"></i> Se connecter</button>
+                        <p class="muted-note" style="margin-top: 1rem;">
+                            <i class="fas fa-info-circle"></i> Les <strong>médecins</strong> ont accès à toute l’administration du cabinet (patients, services, rendez-vous). Le menu affiche <strong>Mon compte</strong> et <strong>Gestion patients</strong>.
+                        </p>
+                    </form>
+                </div>
+                <div class="aside-card" style="margin-top: 1.5rem;">
+                    <h3><i class="fas fa-mobile-alt"></i> Urgence dentaire ?</h3>
+                    <p>Contactez le cabinet directement :</p>
+                    <div style="margin-top: 12px;">
+                        <a href="tel:70000000" style="text-decoration: none;">
+                            <button type="button" class="btn-small btn-accent"><i class="fas fa-phone"></i> 70 000 000</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="authPanelRegister" class="auth-panel hidden">
+            <div class="form-section form-section--narrow" style="margin: 0 auto;">
+                <h2 class="auth-panel-title"><i class="fas fa-user-plus"></i> Nouveau compte patient</h2>
+                <form id="inscriptionForm">
+                    <h3><i class="fas fa-user-circle"></i> Informations personnelles</h3>
+                    <div class="form-group">
+                        <label for="inscNom"><i class="fas fa-user"></i> Prénom et nom *</label>
+                        <input type="text" id="inscNom" name="inscNom" required placeholder="Ex : Mohamed Ali Bougatef">
+                    </div>
+                    <div class="form-group">
+                        <label for="inscCivilite"><i class="fas fa-venus-mars"></i> Civilité</label>
+                        <select id="inscCivilite" name="inscCivilite">
+                            <option value="M">Monsieur</option>
+                            <option value="Mme">Madame</option>
+                            <option value="Mlle">Mademoiselle</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inscNaissance"><i class="fas fa-calendar"></i> Date de naissance *</label>
+                        <input type="date" id="inscNaissance" name="inscNaissance" required>
+                    </div>
+                    <h3><i class="fas fa-address-card"></i> Coordonnées</h3>
+                    <div class="form-group">
+                        <label for="inscEmail"><i class="fas fa-envelope"></i> Email *</label>
+                        <input type="email" id="inscEmail" name="inscEmail" required autocomplete="email" placeholder="exemple@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="inscTelephone"><i class="fas fa-phone"></i> Téléphone *</label>
+                        <input type="tel" id="inscTelephone" name="inscTelephone" required placeholder="XX XXX XXX">
+                    </div>
+                    <div class="form-group">
+                        <label for="inscAdresse"><i class="fas fa-map-marker-alt"></i> Adresse</label>
+                        <input type="text" id="inscAdresse" name="inscAdresse" placeholder="Numéro, rue, ville">
+                    </div>
+                    <h3><i class="fas fa-lock"></i> Sécurité</h3>
+                    <div class="form-group">
+                        <label for="inscPassword"><i class="fas fa-key"></i> Mot de passe *</label>
+                        <div class="password-field">
+                            <input type="password" id="inscPassword" name="inscPassword" required minlength="8" autocomplete="new-password" placeholder="Minimum 8 caractères">
+                            <button type="button" class="password-toggle" data-password-target="inscPassword" aria-label="Afficher ou masquer le mot de passe" title="Afficher / masquer">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <small class="muted-note" style="display: block; margin-top: 6px;">Au moins 8 caractères</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="inscConfirmPassword"><i class="fas fa-key"></i> Confirmer le mot de passe *</label>
+                        <div class="password-field">
+                            <input type="password" id="inscConfirmPassword" name="inscConfirmPassword" required autocomplete="new-password" placeholder="********">
+                            <button type="button" class="password-toggle" data-password-target="inscConfirmPassword" aria-label="Afficher ou masquer la confirmation" title="Afficher / masquer">
+                                <i class="fas fa-eye" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="inscConditions" name="inscConditions" required>
+                            J’accepte les <a href="#">conditions générales</a> et la <a href="#">politique de confidentialité</a> *
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="inscNewsletter" name="inscNewsletter">
+                            Je souhaite recevoir les newsletters et offres
+                        </label>
+                    </div>
+                    <button type="submit"><i class="fas fa-user-plus"></i> S’inscrire</button>
+                    <p class="text-center" style="margin-top: 1rem;">
+                        Déjà inscrit ? <button type="button" class="link-like" id="linkGoLogin">Connectez-vous ici</button>
+                    </p>
+                </form>
+            </div>
+            <div class="aside-card form-section--narrow" style="margin: 1.5rem auto 0;">
+                <h3><i class="fas fa-shield-alt"></i> Données protégées</h3>
+                <p>Vos informations sont traitées de façon confidentielle conformément à la réglementation en vigueur.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Cabinet Dentaire Bougatef - Tous droits réservés<br>
+        <small>
+            <i class="fas fa-phone"></i> Téléphone : 70 000 000 |
+            <i class="fas fa-envelope"></i> Email : contact@cabinetbougatef.com
+        </small>
+    </footer>
+    <script src="api-base.js"></script>
+    <script src="nav-auth.js" defer></script>
+    <script src="inscription-connexion.js" defer></script>
+</body>
+</html>

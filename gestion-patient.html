@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Patients - Cabinet Dentaire</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="icon" type="image/x-icon" href="logopg.png">
+
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html"><img src="logopg.png" alt="Logo Cabinet Dentaire"></a>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                <a href="medecins.html"><i class="fas fa-user-md"></i> Médecins</a>
+                <a href="services.html"><i class="fas fa-teeth"></i> Services / RDV</a>
+                <span class="nav-auth-slot" id="navAuthSlot">
+                    <a href="inscription-connexion.html" class="nav-auth-combined"><i class="fas fa-user"></i> Inscription / Connexion</a>
+                </span>
+                <a href="gestion-patient.html" class="nav-link-gestion-patients" hidden><i class="fas fa-clipboard-list"></i> Gestion Patients</a>
+                <a href="gestion-rdv.html" class="nav-link-gestion-rdv" hidden><i class="fas fa-calendar-check"></i> Rendez-vous</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container-custom">
+        <div id="gpGate" class="message" role="status">
+            <i class="fas fa-spinner fa-spin"></i> Vérification de votre accès…
+        </div>
+        <div id="gpApp" class="hidden">
+        <h1><i class="fas fa-user-injured"></i> Gestion des Patients</h1>
+        <p class="subtitle">
+            Interface réservée aux <strong>médecins</strong> et comptes <strong>administrateur</strong> (même accès : dossiers patients, services, rendez-vous).
+        </p>
+
+        <p id="adminQuickLinks" class="admin-quick-links hidden">
+            <i class="fas fa-user-shield"></i> Espace administration :
+            <a href="gestion-medecins.html">Comptes praticiens</a>
+            ·
+            <a href="gestion-services.html">Services &amp; images</a>
+            ·
+            <a href="gestion-rdv.html">Rendez-vous &amp; commandes</a>
+        </p>
+        
+        <div class="form-container">
+            <section class="form-section">
+                <h2><i class="fas fa-user-plus"></i> Ajouter un Patient</h2>
+                <form id="addPatientForm">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Nom complet *</label>
+                        <input type="text" id="patientNom" name="patientNom" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-venus-mars"></i> Genre</label>
+                        <select id="patientGenre" name="patientGenre">
+                            <option value="M">Masculin</option>
+                            <option value="F">Féminin</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar"></i> Date de naissance *</label>
+                        <input type="date" id="patientNaissance" name="patientNaissance" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Téléphone *</label>
+                        <input type="tel" id="patientTel" name="patientTel" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email</label>
+                        <input type="email" id="patientEmail" name="patientEmail">
+                    </div>
+
+                    <div class="form-group">
+                         <label><i class="fas fa-map-marker-alt"></i> Adresse</label>
+                         <input type="text" id="patientAdresse" name="patientAdresse" placeholder="Adresse complète">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="patientServiceId"><i class="fas fa-teeth"></i> Acte / service (optionnel)</label>
+                        <select id="patientServiceId" name="patientServiceId">
+                            <option value="">— Aucun —</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar-check"></i> Date consultation *</label>
+                        <input type="date" id="consultationDate" name="consultationDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> Heure consultation</label>
+                        <input type="time" id="consultationTime" name="consultationTime">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-stethoscope"></i> Médecin traitant</label>
+                        <select id="patientMedecin" name="patientMedecin">
+                            <option value="ilhem">Dr. Ilhem Trabelsi Bougatef</option>
+                            <option value="chakib">Dr. Mohamed Chakib Bougatef</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-notes-medical"></i> Notes médicales</label>
+                        <textarea id="patientNotes" name="patientNotes" rows="3" placeholder="Antécédents, allergies..."></textarea>
+                    </div>
+                    <div class="payment-info-container">
+                    <div class="form-group">
+                        <label for="total-amount">Montant Total à Payer:</label>
+                        <input type="number" id="total-amount" name="total-amount" placeholder="Ex: 200" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount-paid">Montant Payé:</label>
+                        <input type="number" id="amount-paid" name="amount-paid" placeholder="Ex: 100" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment-status">Statut de Paiement:</label>
+                        <select id="payment-status" name="payment-status" required>
+                            <option value="non-payé">Non Payé</option>
+                            <option value="partiellement-payé">Partiellement Payé</option>
+                            <option value="payé">Payé</option>
+                        </select>
+                    </div>
+                    </div>
+                    
+                    <button type="submit">
+                        <i class="fas fa-save"></i> Enregistrer le Patient
+                    </button>
+                </form>
+            </section>
+            
+            <section class="form-section">
+                <h2><i class="fas fa-search"></i> Recherche de Patient</h2>
+                <form id="searchPatientForm">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Nom du patient</label>
+                        <input type="text" id="searchNom" name="searchNom" placeholder="Entrez le nom...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> ou par téléphone</label>
+                        <input type="tel" id="searchTel" name="searchTel" placeholder="Numéro de téléphone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-calendar"></i> ou par date de consultation</label>
+                        <input type="date" id="searchDate" name="searchDate">
+                    </div>
+                    
+                    <button type="submit">
+                        <i class="fas fa-search"></i> Rechercher
+                    </button>
+                    
+                    <button type="button" id="showAllBtn" class="btn-small btn-secondary" style="margin-top: 10px;">
+                        <i class="fas fa-list"></i> Afficher tous les patients
+                    </button>
+                </form>
+                
+                <div style="margin-top: 30px;">
+                    <h3><i class="fas fa-filter"></i> Filtres rapides</h3>
+                    <div class="filter-row">
+                        <button type="button" class="btn-small btn-filter-teal" onclick="filterPatients('today')">
+                            <i class="fas fa-calendar-day"></i> Aujourd'hui
+                        </button>
+                        <button type="button" class="btn-small btn-accent" onclick="filterPatients('week')">
+                            <i class="fas fa-calendar-week"></i> Cette semaine
+                        </button>
+                        <button type="button" class="btn-small btn-filter-amber" onclick="filterPatients('new')">
+                            <i class="fas fa-user-plus"></i> Nouveaux patients
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="stats-panel">
+                    <h3><i class="fas fa-chart-bar"></i> Statistiques</h3>
+                    <p id="statsAdminHint" class="muted-note hidden" style="margin-bottom: 0.75rem;">
+                        Les indicateurs agrégés (revenus, file d’attente…) sont visibles avec un compte <strong>médecin</strong> ou <strong>administrateur</strong>.
+                    </p>
+                    <div class="stat-grid">
+                        <div>
+                            <div class="stat-big" id="totalPatients">0</div>
+                            <div class="stat-label">Patients total</div>
+                        </div>
+                        <div>
+                            <div class="stat-big stat-big--accent" id="todayPatients">0</div>
+                            <div class="stat-label">Rendez-vous aujourd'hui</div>
+                        </div>
+                        <div>
+                            <div class="stat-big" id="statUpcoming">0</div>
+                            <div class="stat-label">RDV à venir (non terminés)</div>
+                        </div>
+                        <div>
+                            <div class="stat-big stat-big--accent" id="statServices">0</div>
+                            <div class="stat-label">Services actifs (catalogue)</div>
+                        </div>
+                        <div>
+                            <div class="stat-big" id="statRevenue">0</div>
+                            <div class="stat-label">Encaissements du mois (DT)</div>
+                        </div>
+                        <div>
+                            <div class="stat-big stat-big--accent" id="statPendingPay">0</div>
+                            <div class="stat-label">RDV avec solde ouvert</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <div style="margin-top: 50px;">
+            <h2><i class="fas fa-users"></i> Liste des Patients</h2>
+            <div id="patientsList">
+               
+                <p class="empty-state">
+                    <i class="fas fa-users-slash fa-2x"></i><br>
+                    Aucun patient trouvé. Utilisez le formulaire de recherche ou ajoutez un nouveau patient.
+                </p>
+            </div>
+        </div>
+        
+        <div class="tool-actions">
+            <button type="button" id="exportPatientsBtn" class="btn-small btn-tool-purple">
+                <i class="fas fa-file-export"></i> Exporter les données
+            </button>
+            <button type="button" id="printPatientsBtn" class="btn-small btn-tool-orange">
+                <i class="fas fa-print"></i> Imprimer la liste
+            </button>
+        </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Cabinet Dentaire Bougatef - Tous droits réservés<br>
+        <small>
+            <i class="fas fa-phone"></i> Téléphone : 70 000 000 | 
+            <i class="fas fa-envelope"></i> Email : contact@cabinetbougatef.com
+        </small>
+    </footer>
+    <script src="api-base.js"></script>
+    <script src="nav-auth.js" defer></script>
+    <script src="gestion-patient.js" defer></script>
+</body>
+</html>

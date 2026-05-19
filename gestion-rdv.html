@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rendez-vous &amp; commandes - Cabinet Dentaire Bougatef</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="logopg.png">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html"><img src="logopg.png" alt="Logo Cabinet Dentaire"></a>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                <a href="medecins.html"><i class="fas fa-user-md"></i> Médecins</a>
+                <a href="services.html"><i class="fas fa-teeth"></i> Services / RDV</a>
+                <span class="nav-auth-slot" id="navAuthSlot">
+                    <a href="inscription-connexion.html" class="nav-auth-combined"><i class="fas fa-user"></i> Inscription / Connexion</a>
+                </span>
+                <a href="gestion-patient.html" class="nav-link-gestion-patients" hidden><i class="fas fa-clipboard-list"></i> Gestion Patients</a>
+                <a href="gestion-rdv.html" class="nav-link-gestion-rdv" hidden><i class="fas fa-calendar-check"></i> Rendez-vous</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container-custom">
+        <h1><i class="fas fa-calendar-alt"></i> Rendez-vous &amp; commandes de prestations</h1>
+        <p class="subtitle">Suivi des demandes en ligne et des consultations : statuts, montants, liaison acte / patient.</p>
+
+        <div id="rdvGate" class="message error" role="status">
+            <i class="fas fa-spinner fa-spin"></i> Vérification des droits…
+        </div>
+
+        <div id="rdvApp" class="hidden">
+            <p class="admin-quick-links">
+                <i class="fas fa-link"></i>
+                <a href="gestion-medecins.html">Comptes praticiens</a>
+                ·
+                <a href="gestion-patient.html" class="nav-link-gestion-patients" hidden>Patients</a>
+                ·
+                <a href="gestion-services.html">Services &amp; images</a>
+                ·
+                <a href="reserver-rdv.html">Formulaire public de réservation</a>
+            </p>
+
+            <p id="rdvMessage" class="message" style="display: none;"></p>
+
+            <div id="rdvTableWrap" class="rdv-admin-table-wrap">
+                <p class="muted-note"><i class="fas fa-spinner fa-spin"></i> Chargement…</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Cabinet Dentaire Bougatef - Tous droits réservés<br>
+        <small>
+            <i class="fas fa-phone"></i> Téléphone : 70 000 000 |
+            <i class="fas fa-envelope"></i> Email : contact@cabinetbougatef.com
+        </small>
+    </footer>
+    <script src="api-base.js"></script>
+    <script src="nav-auth.js" defer></script>
+    <script src="gestion-rdv.js" defer></script>
+</body>
+</html>

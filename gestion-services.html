@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des services - Cabinet Dentaire Bougatef</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="logopg.png">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html"><img src="logopg.png" alt="Logo Cabinet Dentaire"></a>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                <a href="medecins.html"><i class="fas fa-user-md"></i> Médecins</a>
+                <a href="services.html"><i class="fas fa-teeth"></i> Services / RDV</a>
+                <span class="nav-auth-slot" id="navAuthSlot">
+                    <a href="inscription-connexion.html" class="nav-auth-combined"><i class="fas fa-user"></i> Inscription / Connexion</a>
+                </span>
+                <a href="gestion-patient.html" class="nav-link-gestion-patients" hidden><i class="fas fa-clipboard-list"></i> Gestion Patients</a>
+                <a href="gestion-rdv.html" class="nav-link-gestion-rdv" hidden><i class="fas fa-calendar-check"></i> Rendez-vous</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container-custom">
+        <h1><i class="fas fa-teeth"></i> Gestion des services &amp; visuels</h1>
+        <p class="subtitle">Création d’actes avec <strong>image obligatoire</strong>, modification des tarifs et activation dans le catalogue public.</p>
+
+        <div id="svcGate" class="message error" role="status">
+            <i class="fas fa-spinner fa-spin"></i> Vérification des droits…
+        </div>
+
+        <div id="svcApp" class="hidden">
+            <p class="admin-quick-links" id="svcAdminLinks">
+                <i class="fas fa-link"></i>
+                <a href="gestion-medecins.html">Comptes praticiens</a>
+                ·
+                <a href="gestion-patient.html" class="nav-link-gestion-patients" hidden>Patients</a>
+                ·
+                <a href="gestion-rdv.html">Rendez-vous &amp; commandes</a>
+                ·
+                <a href="services.html">Voir le site public</a>
+            </p>
+
+            <section class="form-section">
+                <h2><i class="fas fa-plus-circle"></i> Nouveau service</h2>
+                <p class="muted-note">L’illustration est <strong>obligatoire</strong> (JPEG, PNG, WebP ou GIF).</p>
+                <form id="createServiceForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="svcNom">Nom *</label>
+                        <input type="text" id="svcNom" name="nom" required maxlength="120">
+                    </div>
+                    <div class="form-group">
+                        <label for="svcCat">Catégorie *</label>
+                        <input type="text" id="svcCat" name="categorie" required maxlength="80" placeholder="Ex : Soins Généraux">
+                    </div>
+                    <div class="form-group">
+                        <label for="svcDesc">Description</label>
+                        <textarea id="svcDesc" name="description" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="svcPmin">Prix min (DT)</label>
+                        <input type="number" id="svcPmin" name="prix_min" step="0.01" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="svcPmax">Prix max (DT)</label>
+                        <input type="number" id="svcPmax" name="prix_max" step="0.01" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="svcOrdre">Ordre d’affichage</label>
+                        <input type="number" id="svcOrdre" name="ordre_affichage" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="svcImage">Image *</label>
+                        <input type="file" id="svcImage" name="image" accept="image/jpeg,image/png,image/webp,image/gif" required>
+                    </div>
+                    <button type="submit"><i class="fas fa-upload"></i> Créer le service</button>
+                </form>
+            </section>
+
+            <section class="form-section" id="editSection" style="margin-top: 2rem;">
+                <h2><i class="fas fa-edit"></i> Modifier un service</h2>
+                <p class="muted-note">Sélectionnez « Modifier » dans le tableau. Pour changer uniquement l’image, utilisez le fichier puis « Enregistrer ».</p>
+                <form id="editServiceForm">
+                    <input type="hidden" id="editId">
+                    <div class="form-group">
+                        <label for="editNom">Nom *</label>
+                        <input type="text" id="editNom" required maxlength="120">
+                    </div>
+                    <div class="form-group">
+                        <label for="editCat">Catégorie *</label>
+                        <input type="text" id="editCat" required maxlength="80">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDesc">Description</label>
+                        <textarea id="editDesc" rows="2"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPmin">Prix min</label>
+                        <input type="number" id="editPmin" step="0.01" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="editPmax">Prix max</label>
+                        <input type="number" id="editPmax" step="0.01" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="editOrdre">Ordre</label>
+                        <input type="number" id="editOrdre" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label><input type="checkbox" id="editActif" checked> Visible dans le catalogue public</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="editNewImage">Nouvelle image (optionnel)</label>
+                        <input type="file" id="editNewImage" accept="image/jpeg,image/png,image/webp,image/gif">
+                    </div>
+                    <button type="submit"><i class="fas fa-save"></i> Enregistrer les modifications</button>
+                </form>
+            </section>
+
+            <section style="margin-top: 2.5rem;">
+                <h2><i class="fas fa-list"></i> Liste des actes</h2>
+                <div id="svcTableWrap" class="rdv-admin-table-wrap"></div>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Cabinet Dentaire Bougatef - Tous droits réservés<br>
+        <small>
+            <i class="fas fa-phone"></i> Téléphone : 70 000 000 |
+            <i class="fas fa-envelope"></i> Email : contact@cabinetbougatef.com
+        </small>
+    </footer>
+    <script src="api-base.js"></script>
+    <script src="nav-auth.js" defer></script>
+    <script src="gestion-services.js" defer></script>
+</body>
+</html>

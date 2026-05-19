@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Médecins - Cabinet Dentaire</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="logopg.png">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html"><img src="logopg.png" alt="Logo Cabinet Dentaire"></a>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                <a href="medecins.html"><i class="fas fa-user-md"></i> Médecins</a>
+                <a href="services.html"><i class="fas fa-teeth"></i> Services / RDV</a>
+                <span class="nav-auth-slot" id="navAuthSlot">
+                    <a href="inscription-connexion.html" class="nav-auth-combined"><i class="fas fa-user"></i> Inscription / Connexion</a>
+                </span>
+                <a href="gestion-patient.html" class="nav-link-gestion-patients" hidden><i class="fas fa-clipboard-list"></i> Gestion Patients</a>
+                <a href="gestion-rdv.html" class="nav-link-gestion-rdv" hidden><i class="fas fa-calendar-check"></i> Rendez-vous</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container-custom">
+        <h1>Notre Équipe Médicale</h1>
+        <p class="subtitle">
+            Une équipe de professionnels expérimentés et passionnés, dédiés à votre santé bucco-dentaire.
+        </p>
+
+        <div class="cards">
+            <div class="card-medecin">
+                <img src="ilhem.jpg" alt="Dr. Ilhem Trabelsi Bougatef">
+                <div class="card-medecin-content">
+                    <h3>Dr. Ilhem Trabelsi Bougatef</h3>
+                    <p><strong>Chirurgien-dentiste</strong></p>
+                    <p><i class="fas fa-graduation-cap"></i> Diplômée de la Faculté de Médecine Dentaire de Monastir</p>
+                    <p><i class="fas fa-star"></i> Spécialisée en implantologie et chirurgie buccale</p>
+                    <p><i class="fas fa-award"></i> +20 ans d'expérience</p>
+                    <p><i class="fas fa-language"></i> Langues : Arabe, Français, Anglais</p>
+                    <p style="margin-top: 15px;">
+                        <a href="https://www.facebook.com/profile.php?id=100051257452734" target="_blank" rel="noopener noreferrer" class="btn-social-fb">
+                            <i class="fab fa-facebook"></i> Suivre sur Facebook
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="card-medecin">
+                <img src="chakib.jpg" alt="Dr. Mohamed Chakib Bougatef">
+                <div class="card-medecin-content">
+                    <h3>Dr. Mohamed Chakib Bougatef</h3>
+                    <p><strong>Chirurgien-dentiste</strong></p>
+                    <p><i class="fas fa-graduation-cap"></i> Diplômé de la Faculté de Médecine Dentaire de Monastir</p>
+                    <p><i class="fas fa-star"></i> Spécialisé en orthodontie et esthétique dentaire</p>
+                    <p><i class="fas fa-award"></i> +20 ans d'expérience</p>
+                    <p><i class="fas fa-language"></i> Langues : Arabe, Français, Italien</p>
+                    <p style="margin-top: 15px;">
+                        <i class="fas fa-user-md"></i> <strong>Membre du</strong>
+                        <a href="https://app.cnomdt.tn/1646/fr/presentation" target="_blank" rel="noopener noreferrer" style="font-weight: 600;">
+                            Conseil Régional des Médecins Dentistes (CROMD)
+                        </a>
+                    </p>
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/in/bougatef-med-chakib-aaa70162/?originalSubdomain=tn"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn-social-linkedin">
+                            <i class="fab fa-linkedin-in fa-lg"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="aside-card" style="margin-top: 2.5rem; text-align: left;">
+            <h3><i class="fas fa-handshake"></i> Notre philosophie</h3>
+            <p style="margin-bottom: 15px;">
+                Notre équipe s'engage à fournir des soins dentaires de la plus haute qualité dans un environnement chaleureux et rassurant.
+                Nous croyons en une approche préventive et éducative, en prenant le temps d'expliquer chaque traitement à nos patients.
+            </p>
+            <p>
+                <strong>Notre devise :</strong> « Des sourires sains pour une vie épanouie »
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Cabinet Dentaire Bougatef - Tous droits réservés<br>
+        <small>
+            <i class="fas fa-phone"></i> Téléphone : 70 000 000 |
+            <i class="fas fa-envelope"></i> Email : contact@cabinetbougatef.com<br>
+            <i class="fas fa-map-marker-alt"></i> Adresse : Avenue Habib Bourguiba, Tunis
+        </small>
+    </footer>
+    <script src="api-base.js"></script>
+    <script src="nav-auth.js" defer></script>
+</body>
+</html>

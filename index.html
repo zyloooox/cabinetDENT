@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Cabinet Dentaire Bougatef</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="logopg.png">
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html"><img src="logopg.png" alt="Logo Cabinet Dentaire"></a>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+                <a href="medecins.html"><i class="fas fa-user-md"></i> Médecins</a>
+                <a href="services.html"><i class="fas fa-teeth"></i> Services / RDV</a>
+                <span class="nav-auth-slot" id="navAuthSlot">
+                    <a href="inscription-connexion.html" class="nav-auth-combined"><i class="fas fa-user"></i> Inscription / Connexion</a>
+                </span>
+                <a href="gestion-patient.html" class="nav-link-gestion-patients" hidden><i class="fas fa-clipboard-list"></i> Gestion Patients</a>
+                <a href="gestion-rdv.html" class="nav-link-gestion-rdv" hidden><i class="fas fa-calendar-check"></i> Rendez-vous</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container-custom">
+        <h1>Bienvenue au Cabinet Dentaire Bougatef</h1>
+        
+        <div class="video-hero">
+            <video autoplay loop muted playsinline width="950" height="200">
+                <source src="vid1.mp4" type="video/mp4">
+                <source src="vid1.ogg" type="video/ogg">
+            </video>
+        </div>
+        
+        <h2>Votre Santé Bucco-Dentaire, Notre Priorité</h2>
+        <p class="lead lead--justify">
+            Fort de plus de 15 ans d'expérience, le Cabinet Dentaire Bougatef vous accueille dans un environnement moderne et confortable. 
+            Notre équipe de chirurgiens-dentistes qualifiés met à votre disposition son expertise et les dernières technologies 
+            pour des soins dentaires de qualité. Nous accordons une importance particulière à votre bien-être et à la prévention 
+            des problèmes bucco-dentaires.
+        </p>
+        
+        <div class="cards">
+            <div class="card-medecin">
+                <img src="index1.jpg" alt="Équipements modernes">
+                <div class="card-medecin-content">
+                    <h3><i class="fas fa-microscope"></i> Équipements de Pointe</h3>
+                    <p>Nous utilisons des technologies modernes pour des diagnostics précis et des traitements efficaces.</p>
+                </div>
+            </div>
+            
+            <div class="card-medecin">
+                <img src="acceuil.jpg" alt="Accueil chaleureux">
+                <div class="card-medecin-content">
+                    <h3><i class="fas fa-heart"></i> Accueil Personnalisé</h3>
+                    <p>Une équipe à votre écoute pour répondre à tous vos besoins avec bienveillance et professionnalisme.</p>
+                </div>
+            </div>
+            
+            <div class="card-medecin">
+                <img src="urgence.jpg" alt="Urgences dentaires">
+                <div class="card-medecin-content">
+                    <h3><i class="fas fa-ambulance"></i> Urgences 7j/7</h3>
+                    <p>Service d'urgences disponible pour prendre en charge vos douleurs dentaires rapidement.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="horaires">
+            <h3><i class="far fa-clock"></i> Nos Horaires d'Ouverture</h3>
+            <p><strong>Lundi - Mardi - Jeudi :</strong> 8h00 - 15h00</p>
+            <p><strong>Mercredi - Vendredi - Samedi :</strong> 8h00 - 12h00</p>
+            <p><strong>Dimanche:</strong> Urgences seulement (9h00 - 12h00)</p>
+        </div>
+        
+        <div class="cta-row">
+            <a href="inscription-connexion.html#inscription" id="ctaRdvLink">
+                <button type="button" class="btn-small"><i class="fas fa-calendar-plus"></i> Prendre rendez-vous</button>
+            </a>
+            <a href="services.html">
+                <button type="button" class="btn-small btn-secondary"><i class="fas fa-list"></i> Voir nos services</button>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 Cabinet Dentaire Bougatef - Tous droits réservés<br>
+        <small>
+            <i class="fas fa-phone"></i> Téléphone : 70 000 000 | 
+            <i class="fas fa-envelope"></i> Email : contact@cabinetbougatef.com<br>
+            <i class="fas fa-map-marker-alt"></i> Adresse : Avenue Habib Bourguiba, Tunis
+        </small>
+    </footer>
+    <script src="api-base.js"></script>
+    <script src="nav-auth.js" defer></script>
+    <script src="index.js" defer></script>
+</body>
+</html>
